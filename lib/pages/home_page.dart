@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rgb_generator/pages/widgets/color_text.dart';
 import 'package:rgb_generator/utils/color_generator.dart';
 
 /// The main page of the app.
@@ -25,25 +26,6 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  /// The text widget that displays the current color.
-  Widget colorText() {
-    /// The red value of the color.
-    final int red = color!.red;
-
-    /// The green value of the color.
-    final int green = color!.green;
-
-    /// The blue value of the color.
-    final int blue = color!.blue;
-
-    /// The opacity value of the color.
-    final double opacity = color!.opacity;
-
-    return Text(
-      "RGBA($red, $green, $blue, ${opacity.toStringAsFixed(2)})",
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,7 +47,12 @@ class _HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text('Hello there!'),
-              if (color != null) colorText() else const Text(''),
+              if (color != null)
+                ColorText(
+                  color: color ?? Colors.white,
+                )
+              else
+                Container(),
             ],
           ),
         ),
